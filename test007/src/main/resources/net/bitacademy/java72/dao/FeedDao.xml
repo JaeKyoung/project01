@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java72.dao.FeedDao">
+  <resultMap type="Feed" id="FeedMap">
+    <id     column="fno"      property="no" />
+    <result column="cre_dt"   property="createDate" />
+    <result column="views"    property="viewCount" />
+    <result column="att_file1" property="attachFile1" />
+  </resultMap>
+  
+  <select id="list" resultMap="FeedMap">
+    SELECT *
+    FROM feed
+    ORDER BY fno desc
+  </select>
+  
+  <insert id="insert" parameterType="Feed">
+    insert into feed(`writer`,`content`,`cre_dt`,`attachFile1`,`publicScope`,`likeMsg`) 
+    values(#{writer},#{content},now(),#{attach},#{publicScope},#{likeMsg});
+  </insert>
+  
+  <select id="get" parameterType="int" resultMap="FeedMap">
+    SELECT *
+    FROM feed
+    WHERE fno=#{value}
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
